@@ -1,0 +1,151 @@
+﻿*************************
+*	QUAN: x		*
+*	NGOC: o		*
+*************************
+phần làm thêm ghi ở đây
+******************** thêm ************************
+***************NGOC*****************************
+[package] - [class name] - [method name]
+Utility - DBUtils - GetConnection
+Utility - Log - LogMessageToFile
+Utility - Log - LogExceptionToFile
+
+
+*************************
+
+
+
+
+
+
+Role
+	GetAllRole	x
+Image 
+	GetFirstImageOfProduct	o
+	GetImageOfProduct	o
+	GetImageOfPost		x
+	AddImage		o
+	DeleteImage		x
+Post
+	GetAllPost sort by postTime	o
+	Get a Post by postID		x
+	Update Post			o
+	Delete Post			x
+	Add Post			o
+Comment
+	Get all comment of post		x
+	Get comment of product		o
+	Get comment of a comment	x
+	Get userInformation of comment	o
+	Delete comment			x
+	Add comment			o
+	Edit comment			x
+User
+	Regiter		o
+	Login 		x
+	Update Profile	o
+	Change Password	x
+	GetAllUserInformation	o
+	Get users by name	x
+	Get user by role	o
+	Expired user	o
+Product
+	Get list product with discount and time sale	x
+	Search product by name, category, sort by name, price, discount	o
+	Add product	x
+	Delete product	o
+	Update product information	x
+	Update quantity product		o
+Order
+	Add order	x
+	Get history order of user with voucher	o
+	Update order status (staff)	x
+	Cancel order(user)		o
+	Delete order (staff)		x
+	Get all order in Month, year	o
+	Get detail of order		o
+	Get list products in order	o
+	add product order	o
+	add product voucher	o
+Deal
+	Add deal	x
+	Add deal for each product	o
+	Delete Deal	x
+	Update deal	o
+	Get deal are activity	x
+	Get product are dealing		o
+	Get product with deal	x
+	Get all deal	o
+Voucher
+	Create voucher with voucher code inputed by staff	o
+	Add product are allow in voucher	x
+	Delete voucher		o
+	Update voucher		x
+	Get all voucher are activity	o
+	Get all voucher		x
+SIZE
+	Get size of product
+	Add Product size	o
+CATEGORY
+	Delete category 	o
+	Get all category	o
+
+***********************************************************
+login  	- user account	x
+	- facebook
+register	o	/user/register
+load list product for guest with discount sort by discount	x
+show detail a product include product information, list color, list size list image,discount,timesale	o	/product/{productId}
+search product by name	x
+filter products by discount activity, sort by rating, by price high to low and low to high	o
+rating product	x
+checkout	o	/order/{username}/checkout
+load list post sort by timePost newest to oldest	x
+show a content of post	o	/post/{id}
+comment in a product detail	x
+comment in a post detail	o	/post/comment/add
+load comment from newest -> oldest, pagination of post and product	x
+delete comment	o	/comment/delete
+edit comment	x
+load user profile	o	/user/{username}/profile
+load histotry order	x
+load status and detail of order include products in order	o	/order/{username}/{orderId}
+load product by category	x
+cancel order	o	/order/cancel
+load all poduct sort by id	x
+update product informtaion include quantity	o	/product/update
+delete product	x
+add product	o	/product/add
+add image into product	x
+delete image of product	o	/product/delete/image
+add color of product	x
+add size of poroduct	o	/product/add/size
+add category	x
+delete category	o	/category/delete
+edit name category	x
+load all category sort by name	o	/category/all
+load all post sort by time post	x
+add post + add image to post	o	/post/add
+delete post	x
+update post	o	/post/update
+list all order not approved x
+approve order	o	/order/approve
+list all order sort by date	x
+delete order	o	/order/delete
+reply comment	x
+add deal	o	/deal/add
+update deal	x
+delete deal	o	/deal/delete	
+add product discount for deal	o	/deal/product/add
+delete product discount for deal	x
+update product discount for deal	o	deal/product/update
+create voucher	x
+delete voucher	o	/voucher/delete
+add product for voucher	o	/voucher/product/add
+delete product in voucher	x
+list all account by role	o	/user/role
+set role for account	x
+delete account	o	/user/delete
+Get all deal	o	/deal/all
+Get all category	o	/category/all
+Get all voucher		o	/voucher/all

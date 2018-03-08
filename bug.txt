@@ -1,0 +1,13 @@
+﻿1.add attribute [DataContract] to class model and [DataMember] to field -> Seriallizable 
+2.add attribute [HttpGet] to action in controller
+3.DeleteAccount after delete user return "success" if delete again this user it return "success" too (fixed)-> delete is "expired user" so will add condition to "where expried = 0"
+4.comment/inproduct 404 not found (fixed) -> GetCommentInProduct method missed public
+5.cannot load list comment in product (fixed) -> fix in commentServiceImpl_Q
+6.exception cast invalid in GetCommentInProduct in CommentRepositoryImpl_Q (fixed) -> because postId and parentId and product can be null so add contrucstor in Comment (done comment)
+******7 thiếu load all deal (fixed)
+8.cannot found DeletePorductDeal (fixed) - missed add producedure to database (done deal)
+*******9 thiếu get all voucher (fixed)
+10.GetListProduct method using View ??? in ProductRepositotyImpl_Q (fixed)
+11.Mistake in cast data to product in SearchProduct -> use tag to search (fixed)
+12.Change list of product load to user (fixed)
+13. getpost by postid take exception (fixed) -> get wrong collumn from database

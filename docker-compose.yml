@@ -1,0 +1,8 @@
+version: '3'
+
+services:
+  snkrshop:
+    image: snkrshop
+    build:
+      context: .\snkrshop
+      dockerfile: Dockerfile
