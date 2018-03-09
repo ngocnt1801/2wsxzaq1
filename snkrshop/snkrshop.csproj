@@ -129,6 +129,7 @@
     <Compile Include="Models\Size.cs" />
     <Compile Include="Models\User.cs" />
     <Compile Include="Models\User_Order.cs" />
+    <Compile Include="Models\User_Post.cs" />
     <Compile Include="Models\User_Product.cs" />
     <Compile Include="Models\User_ProductColor.cs" />
     <Compile Include="Models\User_ProductOrder.cs" />

@@ -9,7 +9,7 @@ namespace snkrshop.Services
 {
     partial interface PostService
     {
-        List<Post> GetListPost(int sortTime);
+        List<User_Post> GetListPost(int sortTime);
         string DeletePost(int postId);
     }
 }

@@ -10,16 +10,16 @@ namespace snkrshop.ServicesImplement
 {
     public partial class PostServiceImpl : PostService
     {
-        public List<Post> GetListPost(int sortTime)
+        public List<User_Post> GetListPost(int sortTime)
         {
-            List<Post> result = null;
+            List<User_Post> result = null;
             try
             {
                 result = postRepository.GetListPost(sortTime);
             }
             catch (Exception ex)
             {
-                ex.LogExceptionToFile();
+                //ex.LogExceptionToFile();
                 throw new Exception(ex.Message);
             }
             return result;

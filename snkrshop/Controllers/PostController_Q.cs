@@ -11,7 +11,7 @@ namespace snkrshop.Controllers
     {
         [Route("post/all")]
         [HttpGet]
-        public List<Post> GetListPost(int sortTime)
+        public List<User_Post> GetListPost(int sortTime)
         {
             return this.postService.GetListPost(sortTime);
         }

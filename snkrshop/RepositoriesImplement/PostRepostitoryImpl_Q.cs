@@ -12,13 +12,13 @@ namespace snkrshop.RepositoriesImplement
 {
     public partial class PostRepostitoryImpl : PostRepository
     {
-        public List<Post> GetListPost(int sortTime)
+        public List<User_Post> GetListPost(int sortTime)
         {
             SqlConnection cnn = DBUtils.GetConnection();
-            string sql = "ListAllPost";
+            string sql = "GetAllPost";
             SqlCommand cmd = new SqlCommand(sql, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
-            List<Post> result = new List<Post>();
+            List<User_Post> result = new List<User_Post>();
             try
             {
                 if (cnn.State == ConnectionState.Closed)
@@ -29,7 +29,7 @@ namespace snkrshop.RepositoriesImplement
                 while (reader.Read())
                 {
                     result.Add(
-                            new Post((int)reader["postId"],(string)reader["title"], (string)reader["postContent"], (DateTime)reader["timePost"],(string)reader["userId"])
+                            new User_Post((int)reader["postId"],(string)reader["title"], (DateTime)reader["timePost"],(string)reader["fullname"])
                         );
                 }
 
