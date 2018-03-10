@@ -14,5 +14,6 @@ namespace snkrshop.Services
         string UpdateProduct(int id, string name, string brand, float price, string country, string description, string material, int categoryId, int quantity, string tag);
         User_Product GetProdctDetail(int productId);
         List<User_Product_Item> GetAllListProduct();
+        List<Product> GetAllProductForAdmin();
     }
 }

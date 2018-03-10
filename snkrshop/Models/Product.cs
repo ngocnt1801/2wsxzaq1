@@ -18,37 +18,35 @@ namespace snkrshop.Models
         [DataMember]
         public double Price { get; set; }
         [DataMember]
-        public string Size { get; set; }
-        [DataMember]
         public string Country { get; set; }
         [DataMember]
         public string Description { get; set; }
         [DataMember]
         public string Material { get; set; }
         [DataMember]
-        public int CategoryId { get; set; }
+        public string Category { get; set; }
         [DataMember]
         public int Quantity { get; set; }
         [DataMember]
         public string Tag { get; set; }
+        [DataMember]
+        public DateTime LastModified { get; set; }
+        public int CategoryId { get; set; }
 
-        public Product(int productId, string name, string brand, double price, string size, string country, string description, string material, int categoryId, int quantity)
+        public Product(int productId, string name, string brand, double price, string country, string description, string material, string category, int quantity, string tag, DateTime lastModified, int categoryId)
         {
             ProductId = productId;
             Name = name;
             Brand = brand;
             Price = price;
-            Size = size;
             Country = country;
             Description = description;
             Material = material;
-            CategoryId = categoryId;
+            Category = category;
             Quantity = quantity;
-        }
-
-        public Product(int productId, string name, string brand, double price, string size, string country, string description, string material, int categoryId, int quantity, string tag) : this(productId, name, brand, price, size, country, description, material, categoryId, quantity)
-        {
             Tag = tag;
+            LastModified = lastModified;
+            CategoryId = categoryId;
         }
     }
 }

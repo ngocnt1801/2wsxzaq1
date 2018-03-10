@@ -56,6 +56,7 @@ Product
 	Delete product	o
 	Update product information	x
 	Update quantity product		o
+Get all product for admin o
 Order
 	Add order	x
 	Get history order of user with voucher	o
@@ -132,6 +133,7 @@ list all order not approved x
 approve order	o	/order/approve
 list all order sort by date	x
 delete order	o	/order/delete
+get all product for admin page	o	/admin/product
 reply comment	x
 add deal	o	/deal/add
 update deal	x

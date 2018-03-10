@@ -144,5 +144,18 @@ namespace snkrshop.ServicesImplement
                 throw new Exception(ex.Message);
             }
         }
+
+        public List<Product> GetAllProductForAdmin()
+        {
+            try
+            {
+                return this.productRepository.GetAllProduct();
+            }
+            catch (Exception ex)
+            {
+                //ex.LogExceptionToFile();
+                throw new Exception(ex.Message);
+            }
+        }
     }
 }

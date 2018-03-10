@@ -190,5 +190,57 @@ namespace snkrshop.RepositoriesImplement
             return products;
         }
 
+        public List<Product> GetAllProduct()
+        {
+            SqlConnection cnn = DBUtils.GetConnection();
+            string sql = "GetAllProductForAdmin";
+            SqlCommand cmd = new SqlCommand(sql, cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            List<Product> products = null;
+            try
+            {
+                if (cnn.State == ConnectionState.Closed)
+                {
+                    cnn.Open();
+                }
+                SqlDataReader reader = cmd.ExecuteReader();
+                while (reader.Read())
+                {
+                    if (products == null)
+                    {
+                        products = new List<Product>();
+                    }
+                    products.Add(new Product((int)reader["productId"],
+                                                        (string)reader["name"],
+                                                        (string)reader["brand"],
+                                                        (double)reader["price"],
+                                                        (string)reader["country"],
+                                                        (string)reader["description"],
+                                                        (string)reader["material"],
+                                                        (string)reader["categoryName"],
+                                                        (int)reader["quantity"],
+                                                        (string)reader["tag"],
+                                                        (DateTime)reader["lastModified"],
+                                                        (int)reader["categoryId"]));
+
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                if (cnn.State == ConnectionState.Open)
+                {
+                    cnn.Close();
+                }
+            }
+
+            return products;
+            
+        }
     }
 }

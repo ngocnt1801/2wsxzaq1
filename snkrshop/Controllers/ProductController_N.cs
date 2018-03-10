@@ -50,6 +50,12 @@ namespace snkrshop.Controllers
             return this.productService.GetProdctDetail(productId);
         }
 
+        [Route("admin/product")]
+        [HttpGet]
+        public List<Product> GetAll()
+        {
+            return this.productService.GetAllProductForAdmin();
+        }
     
     }
 }
