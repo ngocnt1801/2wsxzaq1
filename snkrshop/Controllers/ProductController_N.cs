@@ -46,6 +46,7 @@ namespace snkrshop.Controllers
         [HttpGet]
         public User_Product GetDetail(int productId)
         {
+
             return this.productService.GetProdctDetail(productId);
         }
 

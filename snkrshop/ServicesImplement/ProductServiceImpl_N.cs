@@ -94,9 +94,13 @@ namespace snkrshop.ServicesImplement
             try
             {
                 User_Product product = productRepository.GetProductDetail(productId);
-                product.Colors = productColorRepository.GetProductColor(product.ProductId);
-                product.Sizes = productSizeRepository.GetProductSize(product.ProductId);
-                product.Images = imageRepository.GetImageOfProduct(product.ProductId); 
+                if (product != null)
+                {
+                    product.Colors = productColorRepository.GetProductColor(product.ProductId);
+                    product.Sizes = productSizeRepository.GetProductSize(product.ProductId);
+                    product.Images = imageRepository.GetImageOfProduct(product.ProductId);
+                }
+                
                 return product;
             }
             catch (Exception ex)
