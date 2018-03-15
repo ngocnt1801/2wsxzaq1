@@ -83,5 +83,41 @@ namespace snkrshop.RepositoriesImplement
 
             return vouchers;
         }
+
+        public bool IsExistVoucher(string voucher)
+        {
+            SqlConnection cnn = DBUtils.GetConnection();
+            string sql = "IsExistVoucher";
+            SqlCommand cmd = new SqlCommand(sql, cnn);
+            cmd.Parameters.AddWithValue("@Voucher",voucher);
+            cmd.CommandType = CommandType.StoredProcedure;
+
+            try
+            {
+                if (cnn.State == ConnectionState.Closed)
+                {
+                    cnn.Open();
+                }
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+                    return true;
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                if (cnn.State == ConnectionState.Open)
+                {
+                    cnn.Close();
+                }
+            }
+
+            return false;
+        }
     }
 }

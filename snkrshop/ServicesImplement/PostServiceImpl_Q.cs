@@ -10,9 +10,9 @@ namespace snkrshop.ServicesImplement
 {
     public partial class PostServiceImpl : PostService
     {
-        public List<User_Post> GetListPost(int sortTime)
+        public List<Post> GetListPost(int sortTime)
         {
-            List<User_Post> result = null;
+            List<Post> result = null;
             try
             {
                 result = postRepository.GetListPost(sortTime);

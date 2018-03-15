@@ -76,5 +76,22 @@ namespace snkrshop.ServicesImplement
                 throw new Exception(ex.Message);
             }
         }
+
+        public bool IsExistVoucher(string voucher)
+        {
+            try
+            {
+                return voucherRepository.IsExistVoucher(voucher);
+            }
+            catch (Exception ex)
+            {
+                ex.LogExceptionToFile();
+                //return false;
+
+                throw new Exception(ex.Message);
+
+
+            }
+        }
     }
 }

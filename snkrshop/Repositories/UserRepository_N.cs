@@ -13,6 +13,7 @@ namespace snkrshop.Repositories
         bool ExpiredUser(string username);
         User GetUserByUsername(string username);
 
-        List<User> GetUserByRole(int role);
+        List<User> GetAllUser();
+        
     }
 }

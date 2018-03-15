@@ -42,12 +42,12 @@ namespace snkrshop.ServicesImplement
             return result;
         }
 
-        public List<User> GetUserByRole(int role)
+        public List<User> GetAllUser()
         {
             try
             {
                 Console.WriteLine("vo service roi");
-                return this.userRepository.GetUserByRole(role);
+                return this.userRepository.GetAllUser();
             }
             catch (Exception ex)
             {

@@ -9,9 +9,9 @@ namespace snkrshop.Controllers
 {
     public partial class PostController : ApiController
     {
-        [Route("post")]
+        [Route("post/all")]
         [HttpGet]
-        public List<User_Post> GetListPost(int sortTime)
+        public List<Post> GetListPost(int sortTime)
         {
             return this.postService.GetListPost(sortTime);
         }

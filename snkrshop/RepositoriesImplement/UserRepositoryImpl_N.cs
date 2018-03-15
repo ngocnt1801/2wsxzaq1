@@ -82,14 +82,12 @@ namespace snkrshop.RepositoriesImplement
             return result > 0;
         }
 
-        public List<User> GetUserByRole(int role)
+        public List<User> GetAllUser()
         {
-            Console.WriteLine("vo service roi");
             SqlConnection cnn = DBUtils.GetConnection();
-            string sql = "GetUserByRole";
+            string sql = "GetAllUser";
             SqlCommand cmd = new SqlCommand(sql, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add(new SqlParameter("@Role", role));
 
             List<User> users = null;
             try
@@ -104,7 +102,7 @@ namespace snkrshop.RepositoriesImplement
                     {
                         users = new List<User>();
                     }
-                    users.Add(new User((string)reader["userId"], (string)reader["email"], (string)reader["fullname"], (string)reader["address"], (string)reader["phone"], (int)reader["gender"], (int)reader["role"], (DateTime)reader["date_reg"]));
+                    users.Add(new User((string)reader["userId"], (string)reader["email"], (string)reader["fullname"], (string)reader["address"], (string)reader["phone"], (string)reader["gender"], (string)reader["role"], (DateTime)reader["date_reg"]));
                 }
 
             }
@@ -141,7 +139,7 @@ namespace snkrshop.RepositoriesImplement
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    return new User((string)reader["userId"], (string)reader["password"], (string)reader["email"], (string)reader["fullname"], (string)reader["address"], (string)reader["phone"], (int)reader["gender"], (DateTime)reader["date_reg"]);
+                    return new User((string)reader["userId"], (string)reader["password"], (string)reader["email"], (string)reader["fullname"], (string)reader["address"], (string)reader["phone"], (string)reader["gender"], (DateTime)reader["date_reg"]);
                 }
                 
             }

@@ -12,13 +12,13 @@ namespace snkrshop.RepositoriesImplement
 {
     public partial class PostRepostitoryImpl : PostRepository
     {
-        public List<User_Post> GetListPost(int sortTime)
+        public List<Post> GetListPost(int sortTime)
         {
             SqlConnection cnn = DBUtils.GetConnection();
             string sql = "GetAllPost";
             SqlCommand cmd = new SqlCommand(sql, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
-            List<User_Post> result = new List<User_Post>();
+            List<Post> result = new List<Post>();
             try
             {
                 if (cnn.State == ConnectionState.Closed)
@@ -28,11 +28,21 @@ namespace snkrshop.RepositoriesImplement
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    string url = "";
+                    try
+                    {
+                        url = (string)reader["url"];
+                    }
+                    catch (Exception)
+                    {
+
+                        url = "";
+                    }
                     result.Add(
-                            new User_Post((int)reader["postId"],(string)reader["title"], (DateTime)reader["timePost"],(string)reader["fullname"])
+                            new Post((int)reader["postId"],(string)reader["title"],(string)reader["postContent"], (DateTime)reader["timePost"],(string)reader["fullname"],url)
                         );
                 }
-
+                result = sortList(result, sortTime);
             }
             catch (Exception ex)
             {
@@ -78,16 +88,16 @@ namespace snkrshop.RepositoriesImplement
             return result > 0;
         }
 
-        private List<Order> sortList(List<Order> list, int sort)
+        private List<Post> sortList(List<Post> list, int sort)
         {
-            List<Order> sortedList = new List<Order>();
+            List<Post> sortedList = new List<Post>();
             if (sort >= 1)
             {
-                sortedList = list.OrderBy(o => o.OrderDate).ToList();
+                sortedList = list.OrderBy(o => o.PostTime).ToList();
             }
             else if (sort <= -1)
             {
-                sortedList = list.OrderByDescending(o => o.OrderDate).ToList();
+                sortedList = list.OrderByDescending(o => o.PostTime).ToList();
             }
             else
             {

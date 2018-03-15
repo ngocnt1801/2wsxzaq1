@@ -20,18 +20,18 @@ namespace snkrshop.Models
         [DataMember]
         public string UserId { get; set; }
         [DataMember]
-        public int GuestId { get; set; }
+        public string Voucher { get; set; }
         [DataMember]
         public string ApprovederId { get; set; }
 
-        public Order(int orderId, DateTime orderDate, double totalPrice, int orderStatus, string userId, int guestId, string approvederId)
+        public Order(int orderId, DateTime orderDate, double totalPrice, int orderStatus, string userId, string voucher, string approvederId)
         {
             OrderId = orderId;
             OrderDate = orderDate;
             TotalPrice = totalPrice;
             OrderStatus = orderStatus;
             UserId = userId;
-            GuestId = guestId;
+            Voucher = voucher;
             ApprovederId = approvederId;
         }
     }

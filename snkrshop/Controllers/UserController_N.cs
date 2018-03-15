@@ -36,11 +36,11 @@ namespace snkrshop.Controllers
             return this.userService.GetUserInformation(username);
         }
 
-        [Route("user/role")]
+        [Route("user/all")]
         [HttpGet]
-        public List<User> GetListUserInRole(int roleId)
+        public List<User> GetListUserInRole()
         {
-            return this.userService.GetUserByRole(roleId);
+            return this.userService.GetAllUser();
         }
     }
 }

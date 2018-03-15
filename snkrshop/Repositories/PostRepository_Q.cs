@@ -14,7 +14,7 @@ namespace snkrshop.Repositories
         /// </summary>
         /// <param name="sortTime">1 to Ascending, 0 to no-sort, -1 to descending</param>
         /// <returns></returns>
-        List<User_Post> GetListPost(int sortTime);
+        List<Post> GetListPost(int sortTime);
         bool DeletePost(int postId);
 
     }

@@ -55,7 +55,7 @@ namespace snkrshop.RepositoriesImplement
             string sql = "GetPostById";
             SqlCommand cmd = new SqlCommand(sql, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
-            cmd.Parameters.Add(new SqlParameter("@Id", id));
+            cmd.Parameters.AddWithValue("@Id",id);
 
             
             try
@@ -65,10 +65,20 @@ namespace snkrshop.RepositoriesImplement
                     cnn.Open();
                 }
                 SqlDataReader reader = cmd.ExecuteReader();
-                while (reader.Read())
+                if (reader.Read())
                 {
+                    string url = null;
+                    try
+                    {
+                        url = (string)reader["url"];
+                    }
+                    catch (Exception)
+                    {
+                        url = "";
+                        //log file
+                    }
                     
-                    return new Post((int)reader["postId"], (string)reader["title"], (string)reader["postContent"], (DateTime)reader["timePost"], (string)reader["userId"]);
+                    return new Post((int)reader["postId"], (string)reader["title"], (string)reader["postContent"], (DateTime)reader["timePost"], (string)reader["fullname"],url);
                 }
 
             }

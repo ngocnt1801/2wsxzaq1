@@ -31,6 +31,7 @@ namespace snkrshop.Models
         public string Tag { get; set; }
         [DataMember]
         public DateTime LastModified { get; set; }
+        [DataMember]
         public int CategoryId { get; set; }
 
         public Product(int productId, string name, string brand, double price, string country, string description, string material, string category, int quantity, string tag, DateTime lastModified, int categoryId)

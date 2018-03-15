@@ -29,13 +29,9 @@ namespace snkrshop.RepositoriesImplement
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
-                    //string custommer = (string)reader["userId"];
-                    //if(custommer.Length <=0)
-                    //{
-                    //    custommer = ""+(int)reader["guestId"];
-                    //}
+                 
                     result.Add(
-                            new Order((int)reader["id"], (DateTime)reader["date"], (double)reader["totalPrice"], (int)reader["status"], (string)reader["userId"], (int)reader["guestId"], (string)reader["approveder_id"])
+                            new Order((int)reader["id"], (DateTime)reader["date"], (double)reader["totalPrice"], (int)reader["status"], (string)reader["userId"], (string)reader["voucherId"], (string)reader["approveder_id"])
                         );
                 }
             }
@@ -69,7 +65,7 @@ namespace snkrshop.RepositoriesImplement
                 while (reader.Read())
                 {
                     result.Add(
-                            new Order((int)reader["id"], (DateTime)reader["date"], (double)reader["totalPrice"], (int)reader["status"], (string)reader["userId"], (int)reader["guestId"], (string)reader["approveder_id"])
+                            new Order((int)reader["id"], (DateTime)reader["date"], (double)reader["totalPrice"], (int)reader["status"], (string)reader["userId"], (string)reader["voucherId"], (string)reader["approveder_id"])
                         );
                 }
             }
@@ -95,7 +91,7 @@ namespace snkrshop.RepositoriesImplement
         public List<Order> GetListOrder(int sortByTime)
         {
             SqlConnection cnn = DBUtils.GetConnection();
-            string sql = "View_AllOrder";
+            string sql = "GetAllOrder";
             SqlCommand cmd = new SqlCommand(sql, cnn);
             cmd.CommandType = CommandType.StoredProcedure;
             List<Order> result = new List<Order>();
@@ -108,8 +104,24 @@ namespace snkrshop.RepositoriesImplement
                 SqlDataReader reader = cmd.ExecuteReader();
                 while (reader.Read())
                 {
+                    int id = (int)reader["id"];
+                    DateTime orderDate = (DateTime)reader["date"];
+                    double totalPrice = (double)reader["totalPrice"];
+                    int status = (int)reader["status"];
+                    string userId = (string)reader["userId"];
+                    string voucherId = "";
+                    try
+                    {
+                        voucherId =  (string)reader["voucherId"];
+                    }
+                    catch (Exception ex)
+                    {
+                        //throw new Exception(ex.Message);
+                        //log here
+                    }
+                    string approvederId = (string)reader["approveder_id"];
                     result.Add(
-                            new Order((int)reader["id"], (DateTime)reader["date"], (double)reader["totalPrice"], (int)reader["status"], (string)reader["userId"], (int)reader["guestId"], (string)reader["approveder_id"])
+                            new Order(id,orderDate,totalPrice,status,userId,voucherId,approvederId)
                         );
                 }
                 result = sortList(result, sortByTime);

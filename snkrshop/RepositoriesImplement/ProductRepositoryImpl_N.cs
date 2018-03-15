@@ -79,12 +79,51 @@ namespace snkrshop.RepositoriesImplement
                     string description = (string)reader["description"];
                     string material = (string)reader["material"];
                     int quantity = (int)reader["quantity"];
-                    int discount = (int)reader["discount"];
-                    bool type = (bool)reader["type"];
-                    DateTime startTime = (DateTime)reader["startTime"];
-                    int duration = (int)reader["duration"];
+                    int discount = 0;
+                    try
+                    {
+                        discount = (int)reader["discount"];
+                    }
+                    catch (Exception)
+                    {
+                        //log file
+                    }
+                    bool type = true;
+                    try
+                    {
+                        type = (bool)reader["type"];
+                    }
+                    catch (Exception)
+                    {
+                        //log file
+                    }
 
-                    return new User_Product(productId,name,brand,price,country,description,material, quantity,discount,type,startTime,duration);
+                    DateTime? startTime = null;
+                    try
+                    {
+                      startTime  = (DateTime)reader["startTime"];
+                    }
+                    catch (Exception)
+                    {
+                        //log file
+                    }
+                    int duration = 0;
+                    try
+                    {
+                        duration = (int)reader["duration"];
+                    }
+                    catch (Exception)
+                    {
+                        //log file
+                    }
+                    if (startTime == null)
+                    {
+                        return new User_Product(productId, price, name, brand, country, description, material, quantity, discount, type, duration);
+                    }else
+                    {
+                        return new User_Product(productId, price,(DateTime)startTime, name, brand, country, description, material, quantity, discount, type, duration);
+
+                    }
                 }
 
             }
@@ -241,6 +280,56 @@ namespace snkrshop.RepositoriesImplement
 
             return products;
             
+        }
+
+        public Admin_Product GetProductDetailForAdmin(int productId)
+        {
+            SqlConnection cnn = DBUtils.GetConnection();
+            string sql = "GetProductDetailForAdmin";
+            SqlCommand cmd = new SqlCommand(sql, cnn);
+            cmd.CommandType = CommandType.StoredProcedure;
+            cmd.Parameters.Add(new SqlParameter("@ProductId", productId));
+
+            try
+            {
+                if (cnn.State == ConnectionState.Closed)
+                {
+                    cnn.Open();
+                }
+                SqlDataReader reader = cmd.ExecuteReader();
+                if (reader.Read())
+                {
+
+                    string name = (string)reader["name"];
+                    string brand = (string)reader["brand"];
+                    double price = (double)reader["price"];
+                    string country = (string)reader["country"];
+                    string description = (string)reader["description"];
+                    string material = (string)reader["material"];
+                    string categoryName = (string)reader["categoryName"];
+                    int categoryId = (int)reader["categoryID"];
+                    int quantity = (int)reader["quantity"];
+                    string tag = (string)reader["tag"];
+                    DateTime modified = (DateTime)reader["lastModified"];
+              
+
+                    return new Admin_Product(productId,name,brand,price,country,description,material,categoryName,quantity,tag,modified,categoryId);
+                }
+
+            }
+            catch (Exception ex)
+            {
+                throw new Exception(ex.Message);
+            }
+            finally
+            {
+                if (cnn.State == ConnectionState.Open)
+                {
+                    cnn.Close();
+                }
+            }
+
+            return null;
         }
     }
 }

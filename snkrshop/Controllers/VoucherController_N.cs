@@ -34,5 +34,12 @@ namespace snkrshop.Controllers
         {
             return this.voucherService.GetAllVoucher();
         }
+
+        [Route("voucher/exist")]
+        [HttpGet]
+        public bool IsExistVoucher(string voucher)
+        {
+            return this.voucherService.IsExistVoucher(voucher);
+        }
     }
 }

@@ -11,6 +11,6 @@ namespace snkrshop.Services
         string Register(string username, string password, string fullname, string phone, string email, string address);
         string DeleteAccount(string username);
         User GetUserInformation(string username);
-        List<User> GetUserByRole(int role);
+        List<User> GetAllUser();
     }
 }

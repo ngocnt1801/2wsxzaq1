@@ -40,7 +40,7 @@ namespace snkrshop.Models
         [DataMember]
         public List<Image> Images { get; set; }
 
-        public User_Product(int productId, string name, string brand, double price, string country, string description, string material, int quantity, int discount, bool type, DateTime startTime, int duration)
+        public User_Product(int productId, double price, DateTime startTime, string name = "", string brand = "", string country = "", string description = "", string material = "", int quantity = 0, int discount = 0, bool type = false, int duration = 0)
         {
             ProductId = productId;
             Name = name;
@@ -55,5 +55,20 @@ namespace snkrshop.Models
             StartTime = startTime;
             Duration = duration;
         }
+        public User_Product(int productId, double price, string name = "", string brand = "", string country = "", string description = "", string material = "", int quantity = 0, int discount = 0, bool type = false, int duration = 0)
+        {
+            ProductId = productId;
+            Name = name;
+            Brand = brand;
+            Price = price;
+            Country = country;
+            Description = description;
+            Material = material;
+            Quantity = quantity;
+            Discount = discount;
+            Type = type;
+            Duration = duration;
+        }
+
     }
 }

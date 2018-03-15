@@ -40,13 +40,7 @@ namespace snkrshop.Controllers
             return Request.CreateResponse<String>(HttpStatusCode.OK,"thanh cong " + id);
         }
 
-        [Route("user/abc")]
-        [HttpGet]
-        public HttpResponseMessage Test2(String id)
-        {
-            return Request.CreateResponse<String>(HttpStatusCode.OK, "thanh cong " + id);
-        }
-
+       
         [Route("user/set/role")]
         [HttpPost]
         public string SetRole(string username, int role)

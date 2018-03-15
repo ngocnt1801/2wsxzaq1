@@ -112,6 +112,30 @@ namespace snkrshop.ServicesImplement
             }
         }
 
+
+
+        public Admin_Product GetProductDetailForAdmin(int productId)
+        {
+            try
+            {
+                Admin_Product product = productRepository.GetProductDetailForAdmin(productId);
+                if (product != null)
+                {
+                    product.Colors = productColorRepository.GetProductColor(product.ProductId);
+                    product.Sizes = productSizeRepository.GetProductSize(product.ProductId);
+                    product.Images = imageRepository.GetImageOfProduct(product.ProductId);
+                }
+
+                return product;
+            }
+            catch (Exception ex)
+            {
+                //ex.LogExceptionToFile();
+                throw new Exception(ex.Message);
+
+            }
+        }
+
         public string UpdateProduct(int id, string name, string brand, float price, string country, string description, string material, int categoryId, int quantity,string tag)
         {
             string result = FAIL;
@@ -156,6 +180,20 @@ namespace snkrshop.ServicesImplement
                 //ex.LogExceptionToFile();
                 throw new Exception(ex.Message);
             }
+        }
+
+        public List<User_Product> GetListCartProduct(int[] productIds)
+        {
+            List<User_Product> products = new List<User_Product>();
+            foreach (int id in productIds)
+            {
+                User_Product product = GetProdctDetail(id);
+                if (product != null)
+                {
+                    products.Add(product);
+                }
+            }
+            return products;
         }
     }
 }

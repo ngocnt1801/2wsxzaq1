@@ -11,5 +11,6 @@ namespace snkrshop.Services
         string DeleteVoucher(int voucherId);
         string AddVoucherProduct(string voucherId, int productId);
         List<Voucher> GetAllVoucher();
+        bool IsExistVoucher(string voucher);
     }
 }

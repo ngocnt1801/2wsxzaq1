@@ -1,11 +1,7 @@
 ﻿using snkrshop.Models;
 using snkrshop.Services;
 using snkrshop.ServicesImplement;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
 using System.Web.Http;
 
 namespace snkrshop.Controllers
@@ -42,6 +38,14 @@ namespace snkrshop.Controllers
             return this.productService.UpdateProduct(id, name, brand, price, country, description, material, categoryId, quantity,tag);
         }
 
+        //[Route("product/{productId}")]
+        //[HttpGet]
+        //public User_Product GetDetail(int productId)
+        //{
+
+        //    return this.productService.GetProdctDetail(productId);
+        //}
+
         [Route("product/{productId}")]
         [HttpGet]
         public User_Product GetDetail(int productId)
@@ -56,6 +60,19 @@ namespace snkrshop.Controllers
         {
             return this.productService.GetAllProductForAdmin();
         }
-    
+
+        [Route("admin/product/{productId}")]
+        [HttpGet]
+        public Admin_Product GetAdminDetailProduct(int productId)
+        {
+            return this.productService.GetProductDetailForAdmin(productId);
+        }
+
+        [Route("cart/products")]
+        [HttpGet]
+        public List<User_Product> GetProductForCart(int[] id)
+        {
+            return this.productService.GetListCartProduct(id);
+        }
     }
 }

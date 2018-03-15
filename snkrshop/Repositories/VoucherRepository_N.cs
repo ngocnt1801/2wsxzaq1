@@ -10,5 +10,6 @@ namespace snkrshop.Repositories
     {
         bool DeleteVoucher(int voucherId);
         List<Voucher> GetAllVoucher();
+        bool IsExistVoucher(string voucher);
     }
 }

@@ -19,14 +19,17 @@ namespace snkrshop.Models
         public DateTime PostTime { get; set; }
         [DataMember]
         public string UserId { get; set; }
+        [DataMember]
+        public string Image { get; set; }
 
-        public Post(int id, string title, string content, DateTime postTime, string userId)
+        public Post(int id, string title, string content, DateTime postTime, string userId,string image)
         {
             Id = id;
             Title = title;
             Content = content;
             PostTime = postTime;
             UserId = userId;
+            Image = image;
         }
     }
 }

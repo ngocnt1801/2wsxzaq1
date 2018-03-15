@@ -25,7 +25,9 @@ namespace snkrshop.Models
         [DataMember]
         public int Gender { get; set; }
         [DataMember]
-        public int Role { get; set; }
+        public string GenderName { get; set; }
+        [DataMember]
+        public string Role { get; set; }
         [DataMember]
         public DateTime RegisterDate { get; set; }
 
@@ -41,14 +43,14 @@ namespace snkrshop.Models
             RegisterDate = registerDate;
         }
 
-        public User(string username, string email, string fullname, string address, string phone, int gender, int role, DateTime registerDate)
+        public User(string username, string email, string fullname, string address, string phone, string gender, string role, DateTime registerDate)
         {
             Username = username;
             Email = email;
             Fullname = fullname;
             Address = address;
             Phone = phone;
-            Gender = gender;
+            GenderName = gender;
             Role = role;
             RegisterDate = registerDate;
         }
